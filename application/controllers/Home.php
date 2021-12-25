@@ -12,9 +12,6 @@ class Home extends CI_Controller
 
 	public function index()
 	{
-		if(!$this->session->userdata('login')){
-			$this->session->set_flashdata('belum_login', '1');
-		}
 		// echo password_hash('adminNgasal', PASSWORD_DEFAULT);
 		// die;
 		// $2y$10$.jjWex4fJT0S45T4lz9ko.ARrTpmxsn7WeXW6yPmcYyuK6z.c3BCa
@@ -26,9 +23,6 @@ class Home extends CI_Controller
 
 	public function list()
 	{
-		if (!$this->session->userdata('login')) {
-			$this->session->set_flashdata('belum_login', '1');
-		}
 		$data['title'] = 'Pendataan Vaksin';
 		$data['user'] = $this->M_data->getAllUser();
 		$this->load->view('templates/header', $data);
@@ -45,7 +39,6 @@ class Home extends CI_Controller
 			$this->load->view('tambah');
 			$this->load->view('templates/footer');
 		} else {
-			$this->session->set_flashdata('belum_login', '1');
 			redirect('', 'refresh');
 		}
 	}
@@ -78,9 +71,6 @@ class Home extends CI_Controller
 
 	public function login()
 	{
-		if(!$this->session->userdata('login')){
-			$this->session->set_flashdata('belum_login', '1');
-		}
 		$data['title'] = 'Pendataan Vaksin';
 		$this->load->view('templates/header', $data);
 		$this->load->view('login');
