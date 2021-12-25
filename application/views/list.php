@@ -20,7 +20,9 @@
 			<th scope="col">Alamat</th>
 			<th scope="col">tgl_vac1</th>
 			<th scope="col">tgl_vac2</th>
-			<th scope="col" style="<?php if($this->session->flashdata('belum_login')){echo 'display:none';}?>">Action</th>
+			<th scope="col" <?php if (!$this->session->userdata('login')) {
+										echo 'hidden';
+									} ?>>Action</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -35,12 +37,16 @@
 				<td><?= $data['tgl_vac1'] ?></td>
 				<td><?= $data['tgl_vac2'] ?></td>
 				<?php echo $this->session->flashdata('belum_login'); ?>
-					
+
 				<td>
-					<a href="<?= base_url('home/hapus/' . $data['id_user']) ?>" class="btn btn-danger" style="<?php if($this->session->flashdata('belum_login')){echo 'display:none';}?>">Delete</a>
-					<a href="<?= base_url('home/formEdit/' . $data['id_user']) ?>" class="btn btn-primary" style="<?php if($this->session->flashdata('belum_login')){echo 'display:none';}?>">Change</a>
+					<a href="<?= base_url('home/hapus/' . $data['id_user']) ?>" class="btn btn-danger" <?php if (!$this->session->userdata('login')) {
+																													echo 'hidden';
+																												} ?>>Delete</a>
+					<a href="<?= base_url('home/formEdit/' . $data['id_user']) ?>" class="btn btn-primary" <?php if (!$this->session->userdata('login')) {
+																														echo 'hidden';
+																													} ?>>Change</a>
 				</td>
-				
+
 			</tr>
 		<?php
 		endforeach;
